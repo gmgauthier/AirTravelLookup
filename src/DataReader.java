@@ -7,7 +7,7 @@ import java.util.List;
 
 public class DataReader {
 
-    static List<String[]> readCSVFile(String fname){
+    static List<String[]> readCSVFile(final String fname) {
         CSVReader reader = null;
         List<String[]> entries = null;
         try {
@@ -16,7 +16,9 @@ public class DataReader {
             e.printStackTrace();
         }
         try {
-            if (reader != null) entries = reader.readAll();
+            if (reader != null) {
+                entries = reader.readAll();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

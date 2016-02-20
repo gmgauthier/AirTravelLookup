@@ -17,42 +17,53 @@ public class AirportData {
             Airport airport = createAirport(row);
             airports.add(airport);
         }
-        // Collections.sort(airports);
     }
 
     //Accessors
-    public ArrayList<Airport> getAirports() {
+    public ArrayList<Airport> getAllAirports() {
         return airports;
     }
 
 
     // Public methods
     public Airport findAirportByName(String name){
+        for (Airport airport : this.airports){
+            if (airport.getName().contains(name)){
+                return airport;
+            }
+        }
         return null;
     }
 
     public Airport findAirportByIATA(String iata){
-        //TODO: Searching by IATA identifier
+        for (Airport airport : this.airports){
+            if (iata.equals(airport.getName())){
+                return airport;
+            }
+        }
         return null;
     }
 
     public Airport findAirportByICAO(String icao){
-        //TODO: Searching by ICAO identifier
+        for (Airport airport : this.airports){
+            if (icao.equals(airport.getName())){
+                return airport;
+            }
+        }
         return null;
     }
 
     public ArrayList<Airport> findAirportsByCity(String city) {
-        ArrayList<Airport> searchResults = airports.stream().filter(airport -> city.equals(airport.getCity())).
+        return airports.stream().filter(airport -> city.equals(airport.getCity())).
                 collect(Collectors.toCollection(ArrayList::new));
-        return searchResults;
     }
 
-    public Airport findAirportsByCountry(String country){
-        //TODO: Searching by country name
-        return null;
+    public ArrayList<Airport> findAirportsByCountry(String country){
+        return airports.stream().filter(airport -> country.equals(airport.getCountry())).
+                collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public void sortAirports(){
+    public void sortAirportsByCity(){
         Collections.sort(this.airports);
     }
 
